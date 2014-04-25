@@ -11,25 +11,23 @@ namespace StepDX
 {
     class ScorePersist
     {
-        private string persistenceFilename;
+        private XmlReader persistenceFilestream;
 
         private XDocument scoreboard;
 
-        public ScorePersist(string fileName)
+        public ScorePersist()
         {
-            persistenceFilename = fileName;
-
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
-            XmlReader reader = XmlReader.Create(assembly.GetManifestResourceStream("StepDX.highscores.xml"));
-            scoreboard = XDocument.Load(reader);
+            persistenceFilestream = XmlReader.Create(assembly.GetManifestResourceStream("StepDX.highscores.xml"));
+            scoreboard = XDocument.Load(persistenceFilestream);
         }
 
         public void Load()
         {
             try
             {
-                scoreboard = XDocument.Load(persistenceFilename);
+                scoreboard = XDocument.Load(persistenceFilestream);
             }
             catch
             {
@@ -43,7 +41,7 @@ namespace StepDX
 
         public void Save()
         {
-            scoreboard.Save(persistenceFilename);
+            //scoreboard.Save(persistenceFilestream);
         }
 
         public void AddScore(string name, int score)

@@ -220,7 +220,7 @@ namespace StepDX
             player.A = new Vector2(0, -9.8f);
             currentPlat = null;
 
-            scores = new ScorePersist("../../highscores.xml");
+            scores = new ScorePersist();
             scores.Load();
         }
 
