@@ -24,40 +24,39 @@ namespace StepDX
         public GameSounds(Form form)
         {
             assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            jump = assembly.GetManifestResourceStream("StepDX.jump.wav");
-            die = assembly.GetManifestResourceStream("StepDX.mariodie.wav");
-            gameover = assembly.GetManifestResourceStream("StepDX.die.wav"); 
-            gamewon = assembly.GetManifestResourceStream("StepDX.stage_clear.wav");
-            kick = assembly.GetManifestResourceStream("StepDX.kick.wav");
-
         }
 
         public void Jump()
         {
+            jump = assembly.GetManifestResourceStream("StepDX.jump.wav");
             player = new SoundPlayer(jump);
             player.Play();
         }
 
         public void Die()
         {
+            die = assembly.GetManifestResourceStream("StepDX.mariodie.wav");
             player = new SoundPlayer(die);
             player.Play();
         }
 
         public void GameOver()
         {
+            gameover = assembly.GetManifestResourceStream("StepDX.die.wav"); 
             player = new SoundPlayer(gameover);
             player.Play();
         }
 
         public void GameWon()
         {
+            gamewon = assembly.GetManifestResourceStream("StepDX.stage_clear.wav");
             player = new SoundPlayer(gamewon);
             player.Play();
         }
 
         public void Kick()
         {
+            kick = assembly.GetManifestResourceStream("StepDX.kick.wav");
             player = new SoundPlayer(kick);
             player.Play();
         }

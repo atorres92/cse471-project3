@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Xml;
+using System.Reflection;
+using System.IO;
 
 namespace StepDX
 {
@@ -15,6 +18,11 @@ namespace StepDX
         public ScorePersist(string fileName)
         {
             persistenceFilename = fileName;
+
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+
+            XmlReader reader = XmlReader.Create(assembly.GetManifestResourceStream("StepDX.highscores.xml"));
+            scoreboard = XDocument.Load(reader);
         }
 
         public void Load()
