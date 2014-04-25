@@ -14,6 +14,22 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Yoshi\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -33,6 +49,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>382800B47539CBE37E8FD87FC99F06B8F537CDF3</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>StepDX_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
@@ -107,6 +135,75 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="StepDX_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="cloud.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="finishlineplatform.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="stone08.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="texture1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="texture2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="texture3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="texture4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="texture5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="texture6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="bulletbill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mario8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="die.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="jump.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="kick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mariodie.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="stage_clear.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="highscores.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

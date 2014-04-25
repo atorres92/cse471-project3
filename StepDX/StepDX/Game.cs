@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
+using System.IO;
+using System.Reflection;
 
 namespace StepDX
 {
@@ -79,6 +81,8 @@ namespace StepDX
 
         private ScorePersist scores;
 
+        Assembly assembly;
+
         /// <summary>
         /// Jump sounds class
         /// </summary>
@@ -118,14 +122,16 @@ namespace StepDX
             stopwatch.Start();
             lastTime = stopwatch.ElapsedMilliseconds;
 
-            texture1 = TextureLoader.FromFile(device, "../../texture1.bmp");
-            texture2 = TextureLoader.FromFile(device, "../../texture2.bmp");
-            texture3 = TextureLoader.FromFile(device, "../../texture3.bmp");
-            texture4 = TextureLoader.FromFile(device, "../../texture4.bmp");
-            texture5 = TextureLoader.FromFile(device, "../../texture5.bmp");
-            texture6 = TextureLoader.FromFile(device, "../../texture6.bmp");
-            stoneTexture = TextureLoader.FromFile(device, "../../stone08.bmp");
-            finishLineTexture = TextureLoader.FromFile(device, "../../finishlineplatform.bmp");
+            assembly = Assembly.GetExecutingAssembly();
+
+            texture1 = TextureLoader.FromStream(device, getResource("texture1.bmp"));
+            texture2 = TextureLoader.FromStream(device, getResource("texture2.bmp"));
+            texture3 = TextureLoader.FromStream(device, getResource("texture3.bmp"));
+            texture4 = TextureLoader.FromStream(device, getResource("texture4.bmp"));
+            texture5 = TextureLoader.FromStream(device, getResource("texture5.bmp"));
+            texture6 = TextureLoader.FromStream(device, getResource("texture6.bmp"));
+            stoneTexture = TextureLoader.FromStream(device, getResource("stone08.bmp"));
+            finishLineTexture = TextureLoader.FromStream(device, getResource("finishlineplatform.bmp"));
             projectileGen = new ProjectileGenerator(device);
 
             //Create barrier to keep player from walking off edges
@@ -198,7 +204,7 @@ namespace StepDX
             pt.Color = Color.Transparent;
             world.Add(pt);
 
-            Texture spritetexture = TextureLoader.FromFile(device, "../../mario8.png");
+            Texture spritetexture = TextureLoader.FromStream(device, getResource("mario8.png"));
             player.Tex = spritetexture;
             player.AddVertex(new Vector2(-0.2f, 0));
             player.AddTex(new Vector2(0, 1));
@@ -216,6 +222,12 @@ namespace StepDX
 
             scores = new ScorePersist("../../highscores.xml");
             scores.Load();
+        }
+
+        public Stream getResource(String fileName)
+        {
+            String stepName = "StepDX.";
+            return assembly.GetManifestResourceStream( stepName + fileName);
         }
 
         public void addTexturedPolygon(float left, float right, float bottom, float top, float outer, Texture texture)

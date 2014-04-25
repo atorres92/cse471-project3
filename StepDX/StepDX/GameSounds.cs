@@ -5,88 +5,61 @@ using System.Windows.Forms;
 
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
+using System.Media;
 
 namespace StepDX
 {
     class GameSounds
     {
-        private Device SoundDevice = null;
+        System.IO.Stream jump;
+        System.IO.Stream die;
+        System.IO.Stream gameover;
+        System.IO.Stream gamewon;
+        System.IO.Stream kick;
 
-        private SecondaryBuffer jump = null;
-        private SecondaryBuffer die = null;
-        private SecondaryBuffer gameend = null;
-        private SecondaryBuffer gamewon = null;
-        private SecondaryBuffer kick = null;
+        SoundPlayer player;
+
+        System.Reflection.Assembly assembly; 
 
         public GameSounds(Form form)
         {
-            SoundDevice = new Device();
-            SoundDevice.SetCooperativeLevel(form, CooperativeLevel.Priority);
+            assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            jump = assembly.GetManifestResourceStream("StepDX.jump.wav");
+            die = assembly.GetManifestResourceStream("StepDX.mariodie.wav");
+            gameover = assembly.GetManifestResourceStream("StepDX.die.wav"); 
+            gamewon = assembly.GetManifestResourceStream("StepDX.stage_clear.wav");
+            kick = assembly.GetManifestResourceStream("StepDX.kick.wav");
 
-            Load(ref jump, "../../jump.wav");
-            Load(ref die, "../../mariodie.wav");
-            Load(ref gameend, "../../die.wav");
-            Load(ref gamewon, "../../stage_clear.wav");
-            Load(ref kick, "../../kick.wav");
-        }
-
-        private void Load(ref SecondaryBuffer buffer, string filename)
-        {
-            try
-            {
-                buffer = new SecondaryBuffer(filename, SoundDevice);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Unable to load " + filename,
-                                "Danger, Will Robinson", MessageBoxButtons.OK);
-                buffer = null;
-            }
         }
 
         public void Jump()
         {
-            if (jump == null)
-                return;
-
-            if (!jump.Status.Playing)
-                jump.Play(0, BufferPlayFlags.Default);
+            player = new SoundPlayer(jump);
+            player.Play();
         }
 
         public void Die()
         {
-            if (die == null)
-                return;
-
-            if (!die.Status.Playing)
-                die.Play(0, BufferPlayFlags.Default);
+            player = new SoundPlayer(die);
+            player.Play();
         }
 
         public void GameOver()
         {
-            if (gameend == null)
-                return;
-
-            if (!gameend.Status.Playing)
-                gameend.Play(0, BufferPlayFlags.Default);
+            player = new SoundPlayer(gameover);
+            player.Play();
         }
 
         public void GameWon()
         {
-            if (gamewon == null)
-                return;
-
-            if (!gamewon.Status.Playing)
-                gamewon.Play(0, BufferPlayFlags.Default);
+            player = new SoundPlayer(gamewon);
+            player.Play();
         }
 
         public void Kick()
         {
-            if (kick == null)
-                return;
-
-            if (!kick.Status.Playing)
-                kick.Play(0, BufferPlayFlags.Default);
+            player = new SoundPlayer(kick);
+            player.Play();
         }
     }
 }

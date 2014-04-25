@@ -5,7 +5,8 @@ using System.Text;
 using System.Drawing;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
-
+using System.IO;
+using System.Reflection;
 namespace StepDX
 {
     public class ProjectileGenerator
@@ -13,10 +14,12 @@ namespace StepDX
         Texture texture;
         private Device device = null;
         float count = 0;
+        Assembly assembly;
         public ProjectileGenerator(Device d)
         {
+            assembly = Assembly.GetExecutingAssembly();
             device = d;
-            texture = TextureLoader.FromFile(device, "../../bulletbill.png");
+            texture = TextureLoader.FromStream(device, assembly.GetManifestResourceStream("StepDX.bulletbill.png"));
         }
 
         public List<Polygon> Advance(float dt, List<Polygon> world)

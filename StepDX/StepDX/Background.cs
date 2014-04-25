@@ -5,7 +5,8 @@ using System.Text;
 using System.Drawing;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
-
+using System.IO;
+using System.Reflection;
 namespace StepDX
 {
     public class Background
@@ -25,12 +26,16 @@ namespace StepDX
         /// </summary>
         private VertexBuffer backgroundV = null;
 
+        Assembly assembly;
+
         public Background(Device device, float width, float height)
         {
             this.device = device;
 
+            assembly = Assembly.GetExecutingAssembly();
+
             // Load the background texture image
-            backgroundT = TextureLoader.FromFile(device, "../../cloud.bmp");
+            backgroundT = TextureLoader.FromStream(device, assembly.GetManifestResourceStream("StepDX.cloud.bmp"));
 
             // Create a vertex buffer for the background image we will draw
             backgroundV = new VertexBuffer(typeof(CustomVertex.PositionColoredTextured), // Type
